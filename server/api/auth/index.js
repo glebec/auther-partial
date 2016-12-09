@@ -1,6 +1,14 @@
 const router = require('express').Router();
 var User = require('../users/user.model');
 
+router.get('/logout', function (req, res, next) {
+  if (req.session) {
+    req.session.userId = null;
+    // delete req.session.userId;
+  }
+  res.sendStatus(204);
+});
+
 router.post('/login', function (req, res, next) {
   User.findOne({
     where: req.body

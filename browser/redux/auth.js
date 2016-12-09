@@ -3,10 +3,12 @@ import axios from 'axios';
 /* -----------------    ACTIONS     ------------------ */
 
 const SET = 'SET_CURRENT_USER';
+const REMOVE = 'REMOVE_CURRENT_USER';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 const set = user => ({ type: SET, user });
+const unset = () => ({ type: REMOVE });
 
 /* ------------       REDUCER     ------------------ */
 
@@ -31,4 +33,10 @@ export const signup = credentials => dispatch => {
   return axios.post('/api/auth/signup', credentials)
   .then(res => dispatch(set(res.data)))
   .catch(err => console.error('Signup unsuccesful', err));
+};
+
+export const logout = () => dispatch => {
+  return axios.get('/api/auth/logout')
+  .then(res => dispatch(unset()))
+  .catch(err => console.error('Logout unsuccesful', err));
 };
