@@ -12,6 +12,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.use(function (req, res, next) {
+  console.log('session', req.session);
+  next();
+});
+
 app.use(require('./statics.middleware'));
 
 app.use('/api', function (req, res, next) {
