@@ -47,7 +47,7 @@ class Signup extends React.Component {
         <div className="buffer oauth">
           <p>
             <a target="_self"
-               href="/auth/google"
+               href="api/auth/google"
                className="btn btn-social btn-google">
             <i className="fa fa-google"></i>
             <span>{message} with Google</span>

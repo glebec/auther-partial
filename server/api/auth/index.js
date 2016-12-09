@@ -1,6 +1,16 @@
 const router = require('express').Router();
 var User = require('../users/user.model');
 
+var google = require('./google');
+
+router.use('/google', google);
+
+router.get('/me', function (req, res, next) {
+  User.findById(req.session && req.session.userId)
+  .then(user => res.json(user))
+  .catch(next);
+});
+
 router.get('/logout', function (req, res, next) {
   if (req.session) {
     req.session.userId = null;

@@ -1,8 +1,10 @@
 'use strict';
 
 var app = require('express')();
+var passport = require('passport');
 var session = require('express-session');
 var path = require('path');
+var User = require('../api/users/user.model.js');
 
 app.use(require('./logging.middleware'));
 app.use(require('./request-state.middleware'));
@@ -11,8 +13,20 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function (id, done) {
+  User.findById(id)
+  .then(user => done(null, user))
+  .catch(done);
+});
+
 app.use(function (req, res, next) {
-  console.log('session', req.session);
+  console.log('user', req.user);
   next();
 });
 

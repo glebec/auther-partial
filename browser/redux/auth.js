@@ -16,6 +16,8 @@ export default function reducer (currentUser = null, action) {
   switch (action.type) {
     case SET:
       return action.user;
+    case REMOVE:
+      return null;
     default:
       return currentUser;
   }
@@ -39,4 +41,10 @@ export const logout = () => dispatch => {
   return axios.get('/api/auth/logout')
   .then(res => dispatch(unset()))
   .catch(err => console.error('Logout unsuccesful', err));
+};
+
+export const fetchMe = () => dispatch => {
+  return axios.get('/api/auth/me')
+  .then(res => dispatch(set(res.data)))
+  .catch(console.error.bind(console, 'could not fetch me'));
 };
