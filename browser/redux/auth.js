@@ -26,3 +26,9 @@ export const login = credentials => dispatch => {
   .then(res => dispatch(set(res.data)))
   .catch(err => console.error('Login unsuccesful', err));
 };
+
+export const signup = credentials => dispatch => {
+  return axios.post('/api/auth/signup', credentials)
+  .then(res => dispatch(set(res.data)))
+  .catch(err => console.error('Signup unsuccesful', err));
+};
