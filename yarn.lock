@@ -1316,7 +1316,7 @@ expect@^1.20.2:
     object-keys "^1.0.9"
     tmatch "^2.0.1"
 
-express-session@^1.14.1:
+express-session:
   version "1.14.2"
   resolved "https://registry.yarnpkg.com/express-session/-/express-session-1.14.2.tgz#6bcf586ed6d1dc37b02570087756c9de7b80b275"
   dependencies:
