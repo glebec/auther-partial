@@ -3,7 +3,6 @@
 var app = require('express')();
 var session = require('express-session');
 var path = require('path');
-var User = require('../api/users/user.model');
 
 app.use(require('./logging.middleware'));
 app.use(require('./request-state.middleware'));
